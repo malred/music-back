@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: q2k0f0n3
+    url: jdbc:mysql://localhost:3307/music
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 9090
+  # 最大上传的文件大小
+  max-http-header-size: 1024000
+mybatis:
+  mapper-locations: classpath:/mappers/*
+logging:
+  level:
+    root: debug

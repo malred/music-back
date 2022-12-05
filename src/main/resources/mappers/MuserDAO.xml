@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malred.musicback.mappers.MuserDAO">
+    <select id="getUserByNameAndPass" resultType="com.malred.musicback.entity.Muser">
+        select *
+        from muser
+        where uname = #{uname}
+          and upass = #{upass};
+    </select>
+    <insert id="addUser">
+        insert into muser
+        values (#{id}, #{uname}, #{upass})
+    </insert>
+    <insert id="addUserInfo">
+        insert into muser_info(id, createday)
+        values (#{id}, DATE_FORMAT(now(), '%Y-%m-%d'))
+    </insert>
+    <select id="getUserByName" resultType="com.malred.musicback.entity.Muser">
+        select *
+        from muser
+        where uname = #{uname}
+    </select>
+    <select id="getUserInfoById" resultType="com.malred.musicback.entity.MuserInfo">
+        select *
+        from muser_info
+        where id = #{id};
+    </select>
+    <update id="updatePassByName">
+        update muser
+        set upass = #{upass}
+        where uname = #{uname};
+    </update>
+    <update id="updateImgById">
+        update muser_info
+        set img = #{url}
+        where id = #{id};
+    </update>
+</mapper>
