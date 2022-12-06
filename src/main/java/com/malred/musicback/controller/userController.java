@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.Map;
 
 @RestController
@@ -106,22 +105,56 @@ public class userController {
         return R.Fail("修改失败");
     }
 
+    /**
+     * 更新头像
+     *
+     * @param id
+     * @param file
+     * @return
+     */
     @PostMapping("uptImg")
     public Map<String, Object> uptImg(String id, MultipartFile file) {
         if (null == file) {
-            logger.warn("文件为空");
+            return R.Fail("文件为空");
         }
-        System.out.println(file);
-        String url = userService.uptImg(id, file) ;
-        logger.warn("日志" + url);
+        String url = userService.uptImg(id, file);
+//        logger.warn("日志" + url);
         if (null != url) {
             return R.OK("上传成功");
         }
         return R.Fail("上传失败");
     }
 
+    /**
+     * 修改个人信息
+     *
+     * @param id
+     * @param name
+     * @param age
+     * @param birth
+     * @param location
+     * @return
+     */
     @PostMapping("uptMsg")
-    public Map<String, Object> uptPass(MuserInfo muserInfo) {
-        return null;
+    public Map<String, Object> uptPass(
+            String id,
+            String name,
+            Long age,
+            String birth,
+            String location
+    ) {
+        System.out.println(id);
+        MuserInfo userinfo = new MuserInfo();
+        userinfo.setId(id);
+        userinfo.setAge(age);
+        userinfo.setName(name);
+        userinfo.setBirth(birth);
+        userinfo.setLocation(location);
+        System.out.println(userinfo);
+        if (userService.uptMsg(userinfo)) {
+            return R.OK("修改成功");
+        }
+        return R.Fail("修改失败");
     }
+
 }

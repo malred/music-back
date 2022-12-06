@@ -35,4 +35,12 @@
         set img = #{url}
         where id = #{id};
     </update>
+    <update id="updateInfoById">
+        update muser_info
+        set `name`= #{name},
+            age = #{age},
+            birth=DATE_FORMAT(#{birth}, '%Y-%m-%d'),
+            location=#{location}
+        where id = #{id};
+    </update>
 </mapper>

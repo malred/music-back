@@ -25,5 +25,8 @@ public interface userService {
 
     boolean uptPass(String uname, String upass);
 
+    public boolean uptMsg(MuserInfo muserInfo);
+
     public String uptImg(String id, MultipartFile file);
+
 }

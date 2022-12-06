@@ -6,7 +6,6 @@ import com.malred.musicback.mappers.MuserDAO;
 import com.malred.musicback.service.userService;
 import com.malred.musicback.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -83,9 +82,21 @@ public class userServiceImpl implements userService {
         return false;
     }
 
-    @Autowired
-    private Environment environment;
+    @Override
+    public boolean uptMsg(MuserInfo muserInfo) {
+        if (null != muserInfo) {
+            return muserDAO.updateInfoById(
+                    muserInfo.getId(),
+                    muserInfo.getName(),
+                    muserInfo.getAge(),
+                    muserInfo.getBirth(),
+                    muserInfo.getLocation()
+            );
+        }
+        return false;
+    }
 
+    // 上传文件,保存本地
     @Override
     public String uptImg(String id, MultipartFile file) {
         if (null != file && null != id) {

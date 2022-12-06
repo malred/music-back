@@ -4,7 +4,8 @@ import com.malred.musicback.entity.Muser;
 import com.malred.musicback.entity.MuserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 /**
  * MuserDAO继承基类
@@ -72,6 +73,7 @@ public interface MuserDAO {
 
     /**
      * 根据uname修改头像
+     *
      * @param id
      * @param url
      * @return
@@ -79,4 +81,21 @@ public interface MuserDAO {
     boolean updateImgById(
             @Param("id") String id,
             @Param("url") String url);
+
+    /**
+     * 根据id修改信息
+     *
+     * @param id
+     * @param name
+     * @param age
+     * @param birth
+     * @param location
+     * @return
+     */
+    boolean updateInfoById(
+            @Param("id") String id,
+            @Param("name") String name,
+            @Param("age") Long age,
+            @Param("birth") String birth,
+            @Param("location") String location);
 }
