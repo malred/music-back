@@ -18,6 +18,7 @@ public class MuserInfo implements Serializable {
     private String name;
     private String location;
     private Long age;
+    private String sex;
     private String birth;
     private Date createday;
     private String img;//Í·Ïñ

@@ -39,6 +39,7 @@
         update muser_info
         set `name`= #{name},
             age = #{age},
+            sex=#{sex},
             birth=DATE_FORMAT(#{birth}, '%Y-%m-%d'),
             location=#{location}
         where id = #{id};

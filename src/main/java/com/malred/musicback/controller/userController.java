@@ -140,6 +140,7 @@ public class userController {
             String id,
             String name,
             Long age,
+            String sex,
             String birth,
             String location
     ) {
@@ -147,6 +148,7 @@ public class userController {
         MuserInfo userinfo = new MuserInfo();
         userinfo.setId(id);
         userinfo.setAge(age);
+        userinfo.setSex(sex);
         userinfo.setName(name);
         userinfo.setBirth(birth);
         userinfo.setLocation(location);

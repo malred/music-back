@@ -96,6 +96,7 @@ public interface MuserDAO {
             @Param("id") String id,
             @Param("name") String name,
             @Param("age") Long age,
+            @Param("sex") String sex,
             @Param("birth") String birth,
             @Param("location") String location);
 }

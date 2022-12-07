@@ -89,6 +89,7 @@ public class userServiceImpl implements userService {
                     muserInfo.getId(),
                     muserInfo.getName(),
                     muserInfo.getAge(),
+                    muserInfo.getSex(),
                     muserInfo.getBirth(),
                     muserInfo.getLocation()
             );
@@ -121,7 +122,7 @@ public class userServiceImpl implements userService {
             }
             //获取当前的配置文件
             //返回上传到oss的路径
-            String img = "http://localhost:9090/music/img/" + uuidFilename;
+            String img = "http://192.168.2.228:9090/music/img/" + uuidFilename;
             boolean flag = muserDAO.updateImgById(id, img);
             if (flag) {
                 return img;
