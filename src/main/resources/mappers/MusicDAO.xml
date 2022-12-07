@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malred.musicback.mappers.MusicDAO">
+    <!--如果对象的属性名和数据库的字段名相同就不用配map-->
+    <insert id="insertUserLike">
+        insert into muser_like (id, uid, mid)
+        values (concat(#{uid}, #{musicInfo.mid}), #{uid}, #{musicInfo.mid});
+    </insert>
+    <insert id="insertMusicInfo">
+        insert into music_info (mid, mname, pic_url, arname)
+        values (#{musicInfo.mid}, #{musicInfo.mname},
+                #{musicInfo.picUrl}, #{musicInfo.arname});
+    </insert>
+    <select id="getUserLikeById" resultType="java.lang.String">
+        select *
+        from muser_like
+        where id = #{id};
+    </select>
+    <select id="getMuserLikesByUid" resultType="com.malred.musicback.entity.MuserLike">
+        select *
+        from muser_like
+        where uid = #{uid};
+    </select>
+    <select id="getLike" resultType="com.malred.musicback.entity.MusicInfo">
+        select *
+        from music_info
+        where mid = #{mid};
+    </select>
+    <delete id="deleteByUidAndMid">
+        delete
+        from muser_like
+        where uid = #{uid}
+          and mid = #{mid};
+    </delete>
+</mapper>

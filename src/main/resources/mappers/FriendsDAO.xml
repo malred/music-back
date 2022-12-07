@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malred.musicback.mappers.FriendsDAO">
+    <!--    <resultMap id="BaseResultMap" type="com.malred.musicback.entity.Friends">-->
+    <!--        <id column="id" jdbcType="INTEGER" property="id"/>-->
+    <!--        <result column="uid" jdbcType="VARCHAR" property="uid"/>-->
+    <!--        <result column="fid" jdbcType="VARCHAR" property="fid"/>-->
+    <!--        <result column="group" jdbcType="VARCHAR" property="group"/>-->
+    <!--    </resultMap>-->
+    <insert id="addFriend">
+        insert into friends (uid, fid, `group`)
+        values (#{uid}, #{fid}, #{fgroup});
+    </insert>
+    <select id="getByUidAndFidAndGroup" resultType="com.malred.musicback.entity.Friends">
+        select *
+        from friends
+        where uid = #{uid}
+          and fid = #{fid}
+          and `group` = #{fgroup};
+    </select>
+    <select id="getGroupsByUid" resultType="java.lang.String">
+        select `group`
+        from friends
+        where uid = #{uid}
+    </select>
+    <select id="getFidByGroupAndUid" resultType="java.lang.String">
+        select fid
+        from friends
+        where `group` = #{fgroup}
+          and uid = #{uid};
+    </select>
+    <select id="getFriendByFid" resultType="com.malred.musicback.entity.MuserInfo">
+        select *
+        from muser_info
+        where id = #{fid};
+    </select>
+    <delete id="delFriendByUidAndFid">
+        delete
+        from friends
+        where uid = #{uid}
+          and fid = #{fid};
+    </delete>
+    <select id="getByUidAndFid" resultType="java.lang.String">
+        select `group`
+        from friends
+        where uid = #{uid}
+          and fid = #{fid}
+    </select>
+    <update id="updataGroupByUidAndFid">
+        update friends
+        set `group` = #{fgroup}
+        where uid = #{uid}
+          and fid = #{fid};
+    </update>
+</mapper>
