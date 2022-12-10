@@ -26,6 +26,10 @@ public class musicServiceImpl implements musicService {
             return false;
         }
         if (null != uid && null != musicInfo) {
+            //如果该歌曲信息已存在(music_info)
+            if (null != musicDao.getLike(musicInfo.getMid())) {
+                return musicDao.insertUserLike(uid, musicInfo);
+            }
             //都为真才为真
             return (musicDao.insertUserLike(uid, musicInfo)
                     && musicDao.insertMusicInfo(musicInfo));
@@ -55,10 +59,10 @@ public class musicServiceImpl implements musicService {
         //喜欢的歌曲列表
         List<MusicInfo> likes = new ArrayList<>();
         for (MuserLike muserLike : muserLikes) {
-            if(null==muserLike)return null;
-            MusicInfo musicInfo=musicDao.getLike(muserLike.getMid());
+            if (null == muserLike) return null;
+            MusicInfo musicInfo = musicDao.getLike(muserLike.getMid());
             //如果查询为空就return
-            if(null==musicInfo)return null;
+            if (null == musicInfo) return null;
             likes.add(musicInfo);
         }
         return likes;
@@ -66,14 +70,15 @@ public class musicServiceImpl implements musicService {
 
     /**
      * 根据uid和mid删除我喜欢的歌曲
+     *
      * @param uid
      * @param mid
      * @return
      */
     @Override
     public boolean delLike(String uid, String mid) {
-        if(null!=uid&&null!=mid){
-            return musicDao.deleteByUidAndMid(uid,mid);
+        if (null != uid && null != mid) {
+            return musicDao.deleteByUidAndMid(uid, mid);
         }
         return false;
     }
