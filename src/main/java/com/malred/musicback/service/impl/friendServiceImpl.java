@@ -43,6 +43,7 @@ public class friendServiceImpl implements friendService {
             return friendsDAO.addFriend(uid, fid, fgroup)
                     //对方也要添加这个好友
                     && (null != friendsExist(fid, uid, fgroup)) ?
+                    //但是好像走不到这步,直接return应该也行
                     //对方如果有这个好友但是分组不同就改分组
                     friendsDAO.updataGroupByUidAndFid(fid, uid, fgroup) :
                     //对方没有这个好友就添加到默认分组

@@ -1,6 +1,7 @@
 package com.malred.musicback.controller;
 
 import com.malred.musicback.entity.MuserInfo;
+import com.malred.musicback.entity.httpReceive.HFriend;
 import com.malred.musicback.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,17 @@ public class friendController {
     /**
      * 根据uname添加好友
      *
-     * @param uid    本人账号id
-     * @param fname  好友的账号
-     * @param fgroup 好友的分组
+     * @param hFriend
      * @return
      */
-    @PostMapping("addFriend")
-    public Map<String, Object> addFriend(String uid, String fname, String fgroup) {
-        if (friendService.addFriend(uid, fname, fgroup)) {
+    @PostMapping(value = "addFriend", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> addFriend(@RequestBody HFriend hFriend
+//            String uid, String fname, String fgroup
+    ) {
+        if (friendService.addFriend(
+                hFriend.getUid(),
+                hFriend.getFname(),
+                hFriend.getFgroup())) {
             return R.OK("添加成功");
         }
         return R.Fail("查无此人或重复添加");

@@ -128,30 +128,11 @@ public class userController {
     /**
      * 修改个人信息
      *
-     * @param id
-     * @param name
-     * @param age
-     * @param birth
-     * @param location
+     * @param userinfo
      * @return
      */
-    @PostMapping("uptMsg")
-    public Map<String, Object> uptPass(
-            String id,
-            String name,
-            Long age,
-            String sex,
-            String birth,
-            String location
-    ) {
-        System.out.println(id);
-        MuserInfo userinfo = new MuserInfo();
-        userinfo.setId(id);
-        userinfo.setAge(age);
-        userinfo.setSex(sex);
-        userinfo.setName(name);
-        userinfo.setBirth(birth);
-        userinfo.setLocation(location);
+    @PostMapping(value = "uptMsg", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> uptPass(@RequestBody MuserInfo userinfo) {
         System.out.println(userinfo);
         if (userService.uptMsg(userinfo)) {
             return R.OK("修改成功");

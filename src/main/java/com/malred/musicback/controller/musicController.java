@@ -1,6 +1,7 @@
 package com.malred.musicback.controller;
 
 import com.malred.musicback.entity.MusicInfo;
+import com.malred.musicback.entity.httpReceive.HMusicInfo;
 import com.malred.musicback.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +28,14 @@ public class musicController {
      *
      * @return
      */
-    @PostMapping("addLike")
-    public Map<String, Object> addLike(
-            String uid, MusicInfo musicInfo
+    @PostMapping(value = "addLike", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> addLike(@RequestBody HMusicInfo hMusicInfo
+//            String uid, MusicInfo musicInfo
     ) {
-//        MusicInfo musicInfo = new MusicInfo(mid,mname,picUrl,arname);
+        MusicInfo musicInfo = new MusicInfo(hMusicInfo);
 //        System.out.println(musicInfo);
 //        System.out.println(uid);
-        if (musicService.addMusicLikeById(uid, musicInfo)) {
+        if (musicService.addMusicLikeById(hMusicInfo.getUid(), musicInfo)) {
             return R.OK("添加成功");
         }
         return R.Fail("请不要重复添加");

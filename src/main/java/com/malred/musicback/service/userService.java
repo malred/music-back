@@ -28,5 +28,4 @@ public interface userService {
     public boolean uptMsg(MuserInfo muserInfo);
 
     public String uptImg(String id, MultipartFile file);
-
 }
