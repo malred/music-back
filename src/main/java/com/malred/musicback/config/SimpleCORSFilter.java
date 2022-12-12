@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * @author malguy-wang sir
- * @create ---
- */
 // 跨域配置类
 public class SimpleCORSFilter implements Filter {
 

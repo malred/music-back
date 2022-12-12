@@ -112,8 +112,8 @@ public class userServiceImpl implements userService {
             String originalFilename = file.getOriginalFilename();
             //生成一个uuid名称出来
             String uuidFilename = UploadUtils.getUUIDName(originalFilename);
-            //创建新文件,名称是uuidFilename,放在D:/blob/music_img下
-            File newFile = new File("D:/blob/music_img", uuidFilename);
+            //创建新文件,名称是uuidFilename,放在D:/blob/music_img/img下
+            File newFile = new File("D:/blob/music_img/img", uuidFilename);
             //将文件输出到目标的文件中
             try {
                 file.transferTo(newFile);

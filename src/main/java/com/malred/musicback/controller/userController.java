@@ -22,13 +22,14 @@ public class userController {
     /**
      * 登录
      *
-     * @param uname
-     * @param upass
      * @return
      */
     @PostMapping("/login")
-    public Map<String, Object> login(String uname, String upass) {
-        if (null != userService.login(uname, upass)) {
+//    public Map<String, Object> login(String uname, String upass) {
+    public Map<String, Object> login(@RequestBody Muser muser) {
+//        System.out.println(muser);
+//        if (null != userService.login(uname, upass)) {
+        if (null != userService.login(muser.getUname(), muser.getUpass())) {
             return R.OK("登录成功");
         }
         return R.Fail("用户名或密码错误");
