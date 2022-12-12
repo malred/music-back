@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malred.musicback.mappers.BlogDAO">
+    <insert id="insertBlog" parameterType="com.malred.musicback.entity.Blogs">
+        insert into blogs (uid, content, title, cover, createday)
+        values (#{blog.uid}, #{blog.content}, #{blog.title}, #{blog.cover},
+                DATE_FORMAT(now(), '%Y-%m-%d'));
+    </insert>
+    <select id="getBlogsByUid" resultType="com.malred.musicback.entity.Blogs">
+        select *
+        from blogs
+        where uid = #{uid}
+    </select>
+    <select id="getBlogByBid" resultType="com.malred.musicback.entity.Blogs">
+        select *
+        from blogs
+        where id = #{bid};
+    </select>
+    <update id="updateBlog" parameterType="com.malred.musicback.entity.Blogs">
+        update blogs
+            -- 其实可以添加个updateday来记录更新时间
+        set content = #{blog.content},
+            title= #{blog.title},
+            cover= #{blog.cover}
+        where id = #{blog.id};
+    </update>
+</mapper>
