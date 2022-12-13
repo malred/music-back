@@ -38,22 +38,19 @@ public class userController {
     /**
      * 注册
      *
-     * @param id
-     * @param uname
-     * @param upass
      * @return
      */
     @PostMapping("/register")
-    public Map<String, Object> register(String id, String uname, String upass) {
+    public Map<String, Object> register(@RequestBody Muser muser) {
         //账号必须唯一
-        if (userService.unameExist(uname)) {
+        if (userService.unameExist(muser.getUname())) {
             return R.Fail("账号已存在");
         }
         //id要唯一(如果已存在,就做一些处理)
-        if (userService.IdExist(id)) {
+        if (userService.IdExist(muser.getId())) {
 
         }
-        if (userService.register(id, uname, upass)) {
+        if (userService.register(muser.getId(), muser.getUname(), muser.getUpass())) {
             return R.OK("注册成功");
         } else {
             return R.Fail("注册失败");
@@ -78,6 +75,7 @@ public class userController {
 
     /**
      * 获取账号密码
+     * todo: 应该传入token认证,防止用户根据账号恶意获取密码
      *
      * @param uname
      * @return
@@ -94,13 +92,11 @@ public class userController {
     /**
      * 修改密码
      *
-     * @param uname
-     * @param upass
      * @return
      */
     @PostMapping("uptPass")
-    public Map<String, Object> uptPass(String uname, String upass) {
-        if (userService.uptPass(uname, upass)) {
+    public Map<String, Object> uptPass(@RequestBody Muser muser) {
+        if (userService.uptPass(muser.getUname(), muser.getUpass())) {
             return R.OK("修改成功");
         }
         return R.Fail("修改失败");

@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: q2k0f0n3
+    password: 123456
 #    password: nFNWD8a7KSaLLbDaN2uO
     url: jdbc:mysql://localhost:3307/music
     #    连接云数据库
