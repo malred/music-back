@@ -21,4 +21,6 @@ public interface blogService {
     HBlog getBlogByBid(String bid);
 
     boolean uptBlog(Blogs blog);
+
+    boolean delBlog(String bid);
 }

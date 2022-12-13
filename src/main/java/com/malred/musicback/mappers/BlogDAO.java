@@ -41,4 +41,11 @@ public interface BlogDAO {
      * @return
      */
     boolean updateBlog(@Param("blog") Blogs blog);
+
+    /**
+     * 删除文章
+     * @param bid
+     * @return
+     */
+    boolean delBlogById(@Param("bid") String bid);
 }

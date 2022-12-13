@@ -14,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author malguy-wang sir
@@ -103,12 +101,29 @@ public class blogServiceImpl implements blogService {
         Blogs blogs = blogDAO.getBlogByBid(bid);
         // 根据文章的作者id,获取作者信息
         MuserInfo muserInfo = muserDAO.getUserInfoById(blogs.getUid());
-        HBlog hBlog=new HBlog(blogs,muserInfo);
+        HBlog hBlog = new HBlog(blogs, muserInfo);
         return hBlog;
     }
 
+    /**
+     * 更新文章
+     *
+     * @param blog
+     * @return
+     */
     @Override
     public boolean uptBlog(Blogs blog) {
         return blogDAO.updateBlog(blog);
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param bid
+     * @return
+     */
+    @Override
+    public boolean delBlog(String bid) {
+        return blogDAO.delBlogById(bid);
     }
 }

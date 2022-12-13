@@ -24,4 +24,9 @@
             cover= #{blog.cover}
         where id = #{blog.id};
     </update>
+    <delete id="delBlogById">
+        delete
+        from blogs
+        where id=#{bid};
+    </delete>
 </mapper>

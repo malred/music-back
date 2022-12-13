@@ -42,6 +42,7 @@ public class blogController {
 
     /**
      * 添加文章
+     *
      * @param blog
      * @return
      */
@@ -50,7 +51,7 @@ public class blogController {
         if (null == blog) {
             return R.Fail("上传内容为空");
         }
-        if(blogService.addBlog(blog)) {
+        if (blogService.addBlog(blog)) {
             return R.OK("发布成功");
         }
         return R.Fail("发布失败");
@@ -58,6 +59,7 @@ public class blogController {
 
     /**
      * 修改文章
+     *
      * @param blog
      * @return
      */
@@ -67,7 +69,7 @@ public class blogController {
             return R.Fail("上传内容为空");
         }
 //        System.out.println(blog);
-        if(blogService.uptBlog(blog)){
+        if (blogService.uptBlog(blog)) {
             return R.OK("修改成功");
         }
         return R.Fail("修改失败");
@@ -103,5 +105,17 @@ public class blogController {
             return R.OK(res);
         }
         return R.Fail("查询文章失败");
+    }
+
+    /**
+     * 删除文章
+     */
+    @DeleteMapping("delBlog")
+    public Map<String, Object> delBlog(String bid) {
+        if(null==bid) return R.Fail("id为空");
+        if(blogService.delBlog(bid)){
+            return R.OK("删除成功");
+        }
+        return R.Fail("删除失败");
     }
 }
