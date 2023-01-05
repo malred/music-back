@@ -1,11 +1,8 @@
 spring:
   datasource:
     username: root
-    password: 123456
-#    password: nFNWD8a7KSaLLbDaN2uO
-    url: jdbc:mysql://localhost:3307/music
-    #    连接云数据库
-#    url: jdbc:mysql://containers-us-west-109.railway.app:6390/music
+    password: 
+    url: jdbc:mysql://localhost:3306/music
     driver-class-name: com.mysql.cj.jdbc.Driver
 server:
   port: 9090
